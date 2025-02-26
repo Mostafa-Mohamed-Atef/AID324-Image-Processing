@@ -1,0 +1,65 @@
+img = imread("1.jpg");
+>> I = rgb2gray(img);
+>> flipped_img = flip(I);
+>> rotated_img = imrotate(flipped_img, 45);
+>> imshow(img)
+>> imshow(img, [])
+>> imwrite(img, 'max_compressed.jpg', 'Quality', 1);
+>> imwrite(img, 'min_compressed.jpg', 'Quality', 100);
+>> max_compressed_size = dir('max_compressed.jpg').bytes;
+>> min_compressed_size = dir('min_compressed.jpg').bytes;
+>> max_k = imfinfo('max_compressed.jpg');
+>> max_image_size = max_k.Width * max_k.Height * max_k.BitDepth / 8
+
+max_image_size =
+
+     6220800
+
+>> max_compression_ratio = max_image_size / max_k.FileSize
+
+max_compression_ratio =
+
+  174.0619
+
+>> min_k = imfinfo('min_compressed.jpg');
+>> min_image_size = min_k.Width * min_k.Height * min_k.BitDepth / 8
+
+min_image_size =
+
+     6220800
+
+>> min_compression_ratio = min_image_size / min_k.FileSize
+
+min_compression_ratio =
+
+   12.0931
+
+>> imginfo = whos('img')
+
+imginfo = 
+
+  struct with fields:
+
+          name: 'img'
+          size: [1080 1920 3]
+         bytes: 6220800
+         class: 'uint8'
+        global: 0
+        sparse: 0
+       complex: 0
+       nesting: [1x1 struct]
+    persistent: 0
+
+>> imginfo.bytes
+
+ans =
+
+     6220800
+
+>> class(img)
+
+ans =
+
+    'uint8'
+
+>> 
