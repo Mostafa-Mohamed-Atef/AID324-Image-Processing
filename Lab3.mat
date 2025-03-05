@@ -1,0 +1,131 @@
+img = imread("I.jpg");
+>> 
+adjusted_img = imdjust(img, stretchlim(img), []);
+Unrecognized function or variable 'imdjust'.
+ 
+Did you mean:
+>> adjusted_img = imadjust(img, stretchlim(img), []);
+>> subplot(1,2,1); imshow(img); title("original");
+>> subplot(1,2,2); imshow(adjusted_img); title("adjuted image");
+>> subplot(1,2,1); imshow(img); title("original"); 
+subplot(1,2,2); imshow(adjusted_img); title("adjuted image");
+
+>> eq = histeq(img);
+>> smoothed = fspecial("average", [5,5]);
+>> smoothed_img = imfilter(img, smoothed);
+>> subplot(1,4,1); imshow(adjusted_img); title("adjuted image");
+subplot(1,4,2); imshow(img); title("original"); 
+subplot(2,4,1); imshow(eq); title("hist eq");
+subplot(2,4,2); imshow(smoothed_img); title("smoothed image"); 
+>>  subplot(1,4,1); imshow(adjusted_img); title("adjuted image");
+subplot(1,4,2); imshow(img); title("original"); 
+subplot(2,4,3); imshow(eq); title("hist eq");
+subplot(2,4,4); imshow(smoothed_img); title("smoothed image"); 
+>> sharpened = fspecial("laplacian");
+>> sharpened_image = imfilter(img, sharpened);
+>> size(img)
+
+ans =
+
+        1280         960           3
+
+>> gray = rgb2gray(img);
+>> sobel_image = edge(gray, 'sobel');
+>> canny_image = edge(gray, 'canny');
+>> prewitt_image = edge(gray, 'prewitt');
+>> canny_image = edge(gray, 'canny', [0.1, 0.3]);
+>> figure;
+
+% Row 1
+subplot(3, 4, 1); imshow(img); title('Original');
+subplot(3, 4, 2); imshow(adjusted_img); title('Adjusted Image');
+subplot(3, 4, 3); imshow(eq); title('Histogram Equalization');
+subplot(3, 4, 4); imshow(smoothed_img); title('Smoothed Image');
+
+% Row 2
+subplot(3, 4, 5); imshow(sharpened_image); title('Sharpened Image');
+subplot(3, 4, 6); imshow(gray); title('Grayscale Image');
+subplot(3, 4, 7); imshow(sobel_image); title('Sobel Edge Detection');
+subplot(3, 4, 8); imshow(canny_image); title('Canny Edge Detection');
+
+% Row 3
+subplot(3, 4, 9); imshow(prewitt_image); title('Prewitt Edge Detection');
+>> prewitt_image = edge(gray, 'prewitt', [0.1, 0.3]);
+Error using images.internal.parseNonStringInputsEdge (line 19)
+The syntax BW = EDGE(... , K) has been removed. Use the BW = EDGE(... , DIRECTION) syntax instead.
+
+Error in edge>parse_inputs (line 526)
+[Thresh,Sigma,H,kx,ky] = images.internal.parseNonStringInputsEdge(varargin,Method,Direction,nonstr);
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Error in edge (line 213)
+[a,method,thresh,sigma,thinning,H,kx,ky] = parse_inputs(args{:});
+                                           ^^^^^^^^^^^^^^^^^^^^^
+ 
+>> prewitt_image = edge(gray, 'prewitt', [0.1, 0.8]);
+Error using images.internal.parseNonStringInputsEdge (line 19)
+The syntax BW = EDGE(... , K) has been removed. Use the BW = EDGE(... , DIRECTION) syntax instead.
+
+Error in edge>parse_inputs (line 526)
+[Thresh,Sigma,H,kx,ky] = images.internal.parseNonStringInputsEdge(varargin,Method,Direction,nonstr);
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Error in edge (line 213)
+[a,method,thresh,sigma,thinning,H,kx,ky] = parse_inputs(args{:});
+                                           ^^^^^^^^^^^^^^^^^^^^^
+ 
+>> threshold = 0.1; % Adjust this value as needed
+prewitt_image = edge(gray, 'prewitt', 'thresh', threshold);
+Error using edge>parse_inputs (line 518)
+Invalid input string or character vector: 'thresh'.
+
+Error in edge (line 213)
+[a,method,thresh,sigma,thinning,H,kx,ky] = parse_inputs(args{:});
+                                           ^^^^^^^^^^^^^^^^^^^^^
+ 
+>> sobel_image = edge(gray, 'sobel', [0.1, 0.3]);
+Error using images.internal.parseNonStringInputsEdge (line 19)
+The syntax BW = EDGE(... , K) has been removed. Use the BW = EDGE(... , DIRECTION) syntax instead.
+
+Error in edge>parse_inputs (line 526)
+[Thresh,Sigma,H,kx,ky] = images.internal.parseNonStringInputsEdge(varargin,Method,Direction,nonstr);
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Error in edge (line 213)
+[a,method,thresh,sigma,thinning,H,kx,ky] = parse_inputs(args{:});
+                                           ^^^^^^^^^^^^^^^^^^^^^
+ 
+>> sobel_image = edge(gray, 'sobel', 0.1);
+>> figure;
+
+% Row 1
+subplot(3, 4, 1); imshow(img); title('Original');
+subplot(3, 4, 2); imshow(adjusted_img); title('Adjusted Image');
+subplot(3, 4, 3); imshow(eq); title('Histogram Equalization');
+subplot(3, 4, 4); imshow(smoothed_img); title('Smoothed Image');
+
+% Row 2
+subplot(3, 4, 5); imshow(sharpened_image); title('Sharpened Image');
+subplot(3, 4, 6); imshow(gray); title('Grayscale Image');
+subplot(3, 4, 7); imshow(sobel_image); title('Sobel Edge Detection');
+subplot(3, 4, 8); imshow(canny_image); title('Canny Edge Detection');
+
+% Row 3
+subplot(3, 4, 9); imshow(prewitt_image); title('Prewitt Edge Detection');
+>> roberts_image = edge(gray, 'roberts');
+>> figure;
+>> figure;
+
+% Row 1
+subplot(3, 4, 1); imshow(img); title('Original');
+subplot(3, 4, 2); imshow(adjusted_img); title('Adjusted Image');
+subplot(3, 4, 3); imshow(eq); title('Histogram Equalization');
+subplot(3, 4, 4); imshow(smoothed_img); title('Smoothed Image');
+
+% Row 2
+subplot(3, 4, 5); imshow(sharpened_image); title('Sharpened Image');
+subplot(3, 4, 6); imshow(gray); title('Grayscale Image');
+subplot(3, 4, 7); imshow(sobel_image); title('Sobel Edge Detection');
+subplot(3, 4, 8); imshow(canny_image); title('Canny Edge Detection');
+
+% Row 3
+subplot(3, 4, 9); imshow(prewitt_image); title('Prewitt Edge Detection');
+subplot(3,4,10); imshow(roberts_image); title("roberts image");
+>> 
