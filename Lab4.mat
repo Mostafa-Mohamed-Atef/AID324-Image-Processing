@@ -1,0 +1,119 @@
+>> img = imread("circlesBrightDark.png");
+>> imshow(img)
+>> img_vector = img(:);
+>> symbols = unique(img_vector);
+>> counts = histcounts(img_vector, length(symbols));
+>> p = counts / numel(img_vector);
+>> dict = huffmandict(symbols, p);
+>> hcode = huffmanenco(img_vector, dict);
+>> 
+>> decoded_img_vector = huffmandeco(hcode, dict);
+>> decoded_img = reshape(decoded_img_vector, size(img));
+>> imshow(decoded_img);
+>> dhsig = huffmandeco(hcode,dict);
+>> sum(bitxor(dhsig(:),img_vector(:)));
+>> N_sig= ceil(log2(max(img_vector(:)))*prod(size(img_vector));
+ N_sig= ceil(log2(max(img_vector(:)))*prod(size(img_vector));
+                                                            ↑
+Invalid expression. When calling a function or indexing a variable, use parentheses. Otherwise, check for mismatched delimiters.
+ 
+Did you mean:
+>> N_sig= ceil(log2(max(img_vector(:)))*prod(size(img_vector)));
+Incorrect number or types of inputs or outputs for function log2.
+ 
+>> N_sig= ceil(log2(max(img(:)))*prod(size(img)));
+Incorrect number or types of inputs or outputs for function log2.
+ 
+>> N_sig= ceil(log2(max(img(:)))*prod(size(img_vector)));
+Incorrect number or types of inputs or outputs for function log2.
+ 
+>> N_sig = ceil(log2(double(max(img_vector(:))))) * numel(img_vector);
+>> N_compressed_sig = length(hcode);
+>> CR = (N_sig - N_compressed_sig) / N_sig * 100;
+>> sprintf('The Compression Ratio CR = %3.2f%%', CR);
+>> 
+>> 
+>> 
+>> %another task
+>> function ba = b_planes_1(a, N_bits)
+% MSB .............. LSB
+% ba(:,:,N_bits) ........ ba(:,:,2) ba(:,:,1)
+for i = 1:N_bits
+    ba(:,:,i) = bitand(a, 2^(i-1) * ones(size(a))) / 2^(i-1);
+end
+end
+ function ba = b_planes_1(a, N_bits)
+ ↑
+Error: Function definitions are not supported in this context. Functions can only be created
+as local or nested functions in code files.
+ 
+>> if size(img, 3) == 3
+    img = rgb2gray(img);
+end
+>> ba1 = b_planes_1(double(img), 8);
+Unrecognized function or variable 'b_planes_1'.
+ 
+>> ba1 = b_planes_1(double(img), 8);
+>> ba2 = b_planes_2(double(img), 8);
+File: b_planes_2.m Line: 5 Column: 46
+Invalid expression. When calling a function or indexing a variable, use parentheses.
+Otherwise, check for mismatched delimiters.
+ 
+>> ba2 = b_planes_2(double(img), 8);
+File: b_planes_2.m Line: 5 Column: 46
+Invalid expression. When calling a function or indexing a variable, use parentheses.
+Otherwise, check for mismatched delimiters.
+ 
+>> ba2 = b_planes_2(double(img), 8);
+File: b_planes_2.m Line: 6 Column: 46
+Invalid expression. When calling a function or indexing a variable, use parentheses.
+Otherwise, check for mismatched delimiters.
+ 
+>> ba2 = b_planes_2(double(img), 8);
+File: b_planes_2.m Line: 6 Column: 46
+Invalid expression. When calling a function or indexing a variable, use parentheses.
+Otherwise, check for mismatched delimiters.
+ 
+>> ba2 = b_planes_2(double(img), 8);
+File: b_planes_2.m Line: 6 Column: 46
+Invalid expression. When calling a function or indexing a variable, use parentheses.
+Otherwise, check for mismatched delimiters.
+ 
+>> ba1 = b_planes_1(double(img), 8);
+>> 
+>> ba2 = b_planes_2(double(img), 8);
+File: b_planes_2.m Line: 6 Column: 46
+Invalid expression. When calling a function or indexing a variable, use parentheses.
+Otherwise, check for mismatched delimiters.
+ 
+>> ba2 = b_planes_2(double(img), 8);
+File: b_planes_2.m Line: 6 Column: 46
+Invalid expression. When calling a function or indexing a variable, use parentheses.
+Otherwise, check for mismatched delimiters.
+ 
+>> ba2 = b_planes_2(img, 8);
+File: b_planes_2.m Line: 6 Column: 46
+Invalid expression. When calling a function or indexing a variable, use parentheses.
+Otherwise, check for mismatched delimiters.
+ 
+>> ba2 = b_planes_2("/img", 8);
+File: b_planes_2.m Line: 6 Column: 46
+Invalid expression. When calling a function or indexing a variable, use parentheses.
+Otherwise, check for mismatched delimiters.
+ 
+>> ba2 = b_planes_2("img", 8);
+File: b_planes_2.m Line: 6 Column: 46
+Invalid expression. When calling a function or indexing a variable, use parentheses.
+Otherwise, check for mismatched delimiters.
+ 
+>> ba2 = b_planes_2(double(img), 8);
+>> mismatch = sum(sum(sum(xor(ba1, ba2)))); % Should be 0
+>> disp(['Mismatch between ba1 and ba2: ', num2str(mismatch)]);
+Mismatch between ba1 and ba2: 0
+>> figure;
+for i = 8:-1:1
+    subplot(8, 1, 9 - i);
+    imshow(ba1(:,:,i), []);
+    title(['Bit-plane ', num2str(i)]);
+end
+>> 
